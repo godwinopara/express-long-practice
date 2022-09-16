@@ -1,9 +1,14 @@
 const express = require('express');
 const app = express();
+const dogs = require("./routes/dogs")
 require("express-async-errors")
 
 app.use("/static", express.static("assets"))
 app.use(express.json())
+app.use("/dogs", dogs)
+
+
+
 
 const logger = (req, res, next) => {
   console.log(req.method)
