@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const dogs = require("./routes/dogs")
+const dogRouter = require("./routes/dogs")
 require("express-async-errors")
 require("dotenv").config()
 
 app.use("/static", express.static("assets"))
 app.use(express.json())
-app.use("/dogs", dogs)
+app.use("/dogs", dogRouter)
 
 const logger = (req, res, next) => {
   console.log(req.method)

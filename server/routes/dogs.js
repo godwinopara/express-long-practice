@@ -87,13 +87,16 @@ const deleteDog = (req, res) => {
 // Your code here
 
 const express = require("express")
-const router = express.Router()
+const dogRouter = express.Router()
+const foodRouter = require("./dog-foods")
 
-router.get('/', getAllDogs)
-router.get("/:dogId",validateDogId,  getDogById)
-router.post("/", validateDogInfo, createDog)
-router.put("/:dogId", [validateDogId, validateDogInfo], updateDog)
-router.delete("/:dogId", deleteDog)
+dogRouter.get('/', getAllDogs)
+dogRouter.get("/:dogId",validateDogId,  getDogById)
+dogRouter.post("/", validateDogInfo, createDog)
+dogRouter.put("/:dogId", [validateDogId, validateDogInfo], updateDog)
+dogRouter.delete("/:dogId", deleteDog)
+
+dogRouter.use("/:dogId/foods", foodRouter)
 
 
-module.exports = router
+module.exports = dogRouter
